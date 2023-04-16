@@ -29,7 +29,11 @@ def limpiar_comentario(comentario):
     return comentario_limpio
 
 # Definir la ruta de la carpeta que contiene los archivos de comentarios
-ruta_carpeta = 'C:/Users/javie/Desktop/aclImdb/test/neg'
+ruta_carpeta = os.getcwd() + '\\aclImdb\\test\\neg'
+
+# Crear un archivo de salida para los comentarios limpios
+ruta_archivo_salida = os.getcwd() + '\\exit\\test'
+archivo_salida = open(ruta_archivo_salida, 'w', encoding='utf-8')
 
 # Leer todos los archivos de la carpeta
 for archivo in os.listdir(ruta_carpeta):
@@ -42,5 +46,8 @@ for archivo in os.listdir(ruta_carpeta):
         # Limpiar el comentario
         comentario_limpio = limpiar_comentario(comentario)
         
-        # Imprimir el comentario limpio
-        print(comentario_limpio)
+        # Escribir el comentario limpio en el archivo de salida
+        archivo_salida.write(comentario_limpio + '\n')
+
+# Cerrar el archivo de salida
+archivo_salida.close()
